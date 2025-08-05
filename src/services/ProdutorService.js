@@ -1,18 +1,25 @@
 const produtorRepository = require('../repository/ProdutorRepository');
 
-const create = async (dados) => {
-  if (!dados.nome || !dados.localizacao) {
-    throw new Error('Nome e localização são obrigatórios');
+class ProdutorService {
+  async create(data) {
+    return await produtorRepository.create(data);
   }
 
-  return await produtorRepository.createProdutor(dados);
-};
+  async findAll() {
+    return await produtorRepository.findAll();
+  }
 
-const list = async () => {
-  return await produtorRepository.listProdutores();
-};
+  async findById(id) {
+    return await produtorRepository.findById(id);
+  }
 
-module.exports = {
-  create,
-  list,
-};
+  async update(id, data) {
+    return await produtorRepository.update(id, data);
+  }
+
+  async delete(id) {
+    return await produtorRepository.delete(id);
+  }
+}
+
+module.exports = new ProdutorService();
