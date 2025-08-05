@@ -1,15 +1,15 @@
 const produtorService = require('../services/ProdutorService');
 
-const criarProdutor = async (req, res) => {
+const createProdutor = async (req, res) => {
   try {
-    const produtor = await produtorService.criar(req.body);
+    const produtor = await produtorService.create(req.body);
     res.status(201).json(produtor);
   } catch (error) {
     res.status(400).json({ erro: error.message });
   }
 };
 
-const listarProdutores = async (req, res) => {
+const listProdutores = async (req, res) => {
   try {
     const produtores = await produtorService.listar();
     res.json(produtores);
@@ -19,6 +19,6 @@ const listarProdutores = async (req, res) => {
 };
 
 module.exports = {
-  criarProdutor,
-  listarProdutores,
+  createProdutor,
+  listProdutores,
 };

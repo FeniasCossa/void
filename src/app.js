@@ -1,17 +1,18 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./config/db');
+const empresasRoutes = require('./routes/EmpresaRouter');
+const campanhaRoutes = require('./routes/CampanhaRouter');
+const tecnicoRoutes = require('./routes/TecnicoRouter');
+const produtorRoutes = require('./routes/ProdutorRouter');
 
 app.use(express.json());
 
 // ROutas
-app.use('/empresa', require('./routes/EmpresaRouter'));
-
-const campanhaRoutes = require('./routes/CampanhaRouter');
+app.use('/empresa', empresasRoutes);
 app.use('/campanha', campanhaRoutes);
-
-const tecnicoRoutes = require('./routes/TecnicoRouter');
 app.use('/tecnico', tecnicoRoutes);
+app.use('/produtor', produtorRoutes);
 
 
 sequelize.sync().then(() => {
